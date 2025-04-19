@@ -22,6 +22,7 @@ function createCustomPostTypeProdutos()
         )
     );
 }
+add_action('init', 'customRewriteRuleProdutos', 10, 0);
 function customRewriteRuleProdutos()
 {
     add_rewrite_rule(
@@ -30,8 +31,6 @@ function customRewriteRuleProdutos()
         'top'
     );
 }
-add_action('init', 'customRewriteRuleProdutos', 10, 0);
-
 
 add_action('init', 'createCustomPostTypeProdutos');
 
@@ -111,3 +110,10 @@ add_action('rest_api_init', function () {
         return $value;
     }, 15);
 }, 15);
+
+add_filter('post_type_link', function ($post_link, $post) {
+    if ($post->post_type === 'produtos') {
+        return home_url('/produtos/' . $post->post_name);
+    }
+    return $post_link;
+}, 10, 2);

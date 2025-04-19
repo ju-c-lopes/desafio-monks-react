@@ -15,7 +15,7 @@ const Card = ({ linkNumber, classType, title, description, image, cardButton, ca
             </div>}
             <h3 dangerouslySetInnerHTML={{ __html: title }} />
             <p dangerouslySetInnerHTML={{ __html: description }} />
-            {cardButton && cardLink && <button className="card_button"><a href={cardLink || "#link" + linkNumber}>{cardButton}</a></button>}
+            {cardButton && cardLink && <button className="card_button" target="_blank"><a href={cardLink || "#link" + linkNumber} rel="noopener noreferrer">{cardButton}</a></button>}
         </div>
     );
 };
