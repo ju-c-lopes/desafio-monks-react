@@ -4,7 +4,7 @@
 .gallery {
     @include flex-center(row);
     flex-wrap: wrap;
-    padding: 3.5em 2.5em;
+    padding: 3.5em;
 }
 
 .gallery_list {
