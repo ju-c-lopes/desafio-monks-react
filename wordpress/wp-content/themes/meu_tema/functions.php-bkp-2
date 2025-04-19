@@ -1,0 +1,29 @@
+<?php
+add_action('init', 'create_custom_post_type_projetos');
+
+add_filter('rest_allowed_cors_origins', function () {
+    return 'http://localhost:5173';
+});
+
+add_action('rest_api_init', function () {
+    error_log('Rota de projetos registrada!');
+    register_rest_route('wp/v2', '/projetos', array(
+        'methods'  => 'GET',
+        'callback' => 'get_projetos_data',
+    ));
+});
+
+function get_projetos_data($request)
+{
+    $posts = get_posts(array('post_type' => 'projetos'));
+    $data = array();
+    foreach ($posts as $post) {
+        $data[] = array(
+            'id'    => $post->ID,
+            'title' => $post->post_title,
+            'content' => $post->post_content,
+            'acf'   => get_fields($post->ID), // Assumindo que você está usando ACF
+        );
+    }
+    return rest_ensure_response($data);
+}

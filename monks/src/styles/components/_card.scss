@@ -1,0 +1,41 @@
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+
+.card {
+    @include flex-center(column);
+    background-color: $card-bg-color;
+    border-radius: 0.5rem;
+    width: calc((100% / 4) - 1em) !important;
+    word-wrap: break-word;
+    padding: 1em;
+    gap: 1em;
+
+    h3 {
+        font-family: $font-stack;
+        font-weight: 1000;
+        font-size: 1.8rem;
+        margin: 1rem 0;
+        line-height: 100%;
+    }
+
+    p {
+        font-size: 1.25rem;
+        font-weight: 100;
+        text-align: start;
+    }
+
+    &:hover {
+        transition: background-color 0.3s ease-in-out;
+        background-color: darken($card-bg-color, 5%);
+    }
+}
+
+.card_image {
+    margin: 0;
+    width: 100%;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+}

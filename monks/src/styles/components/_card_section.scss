@@ -1,0 +1,28 @@
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+
+.card-section {
+    @include flex-center(row);
+    padding: 3.5em 2.5em;
+    
+    .card-container {
+        width: 100%;
+        justify-content: space-between;
+        @include flex-center(row);
+        gap: 2em;
+    }
+}
+
+.card-section--card {
+    background-color: $card-bg-color;
+    border-radius: 0.5rem;
+    color: $secondary-color;
+    padding: 2em;
+    width: calc((100% / 3) - 3em);
+
+    h3 {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1em;
+    }
+}

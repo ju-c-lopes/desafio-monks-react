@@ -1,0 +1,50 @@
+services:
+  db:
+    image: mysql:5.7
+    container_name: wp-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: desafiomonks2025
+    volumes:
+      - db_data:/var/lib/mysql
+
+  wordpress:
+    image: wordpress:latest
+    container_name: wp
+    restart: always
+    ports:
+      - "8000:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: desafiomonks2025
+    volumes:
+      - ./wordpress:/var/www/html/
+      - ./wordpress/.htaccess:/var/www/html/.htaccess
+      - ./wordpress/conf/allowoverride.conf:/etc/apache2/conf-enabled/allowoverride.conf
+      - ./wordpress/000-default.conf:/etc/apache2/sites-available/000-default.conf
+    depends_on:
+      - db
+
+  monks:
+    build:
+      context: ./monks
+      dockerfile: Dockerfile
+    container_name: monks
+    dns:
+      - 8.8.8.8
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./monks:/app
+    working_dir: /app
+    command: npm run dev -- --host 0.0.0.0
+    depends_on:
+      - wordpress
+
+volumes:
+  db_data:
