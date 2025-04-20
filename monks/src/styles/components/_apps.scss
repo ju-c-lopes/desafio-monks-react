@@ -1,39 +1,42 @@
-@use '../utils/variables' as *;
-@use '../utils/mixins' as *;
+@use "../utils/variables" as *;
+@use "../utils/mixins" as *;
+@use "../utils/breakpoints";
 
-.app-section {
-    @include flex-center(row);
-    background-color: $app-bg-color;
-    margin: 3.5em;
-    padding: 3em 4em;
-    justify-content: space-between;
-    color: $primary-color;
-    border-radius: 1.5em;
+@include responsive-to(xl) {
+    .app-section {
+        @include flex-center(row);
+        background-color: $app-bg-color;
+        margin: 3.5em;
+        padding: 3em 4em;
+        justify-content: space-between;
+        color: $primary-color;
+        border-radius: 1.5em;
 
-    .app-section--content {
+        .app-section--content {
+            @include flex-center(column);
+            align-items: flex-start;
+            flex: 0 1 70%;
+            gap: 1em;
+        }
+
+        h2 {
+            font-weight: 1000;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 100%;
+        }
+
+        p {
+            display: flex;
+            font-size: 1.75rem;
+            font-weight: 100;
+            flex: 1 1 50%;
+        }
+    }
+
+    .app-section--image {
         @include flex-center(column);
-        align-items: flex-start;
-        flex: 0 1 70%;
+        justify-content: space-between;
         gap: 1em;
     }
-
-    h2 {
-        font-weight: 1000;
-        font-size: 3rem;
-        margin-bottom: 1rem;
-        line-height: 100%;
-    }
-
-    p {
-        display: flex;
-        font-size: 1.75rem;
-        font-weight: 100;
-        flex: 1 1 50%
-    }
-}
-
-.app-section--image {
-    @include flex-center(column);
-    justify-content: space-between;
-    gap: 1em;
 }

@@ -1,60 +1,62 @@
-@use '../utils/variables' as *;
-@use '../utils/mixins' as *;
+@use "../utils/variables" as *;
+@use "../utils/mixins" as *;
+@use "../utils/breakpoints";
 
-.card-section {
-    @include flex-center(row);
-    padding: 3.5em;
-    
-    .card-container {
-        width: 100%;
-        justify-content: space-between;
+@include responsive-to(xl) {
+    .card-section {
         @include flex-center(row);
-        gap: 2em;
-    }
-}
+        padding: 3.5em;
 
-.card-section--card {
-    @include flex-center(column);
-    align-items: start;
-    justify-content: space-between;
-    background-color: $card-bg-color;
-    border-radius: 0.75rem;
-    color: $secondary-color;
-    padding: 2em;
-    width: calc((100% / 3) - 3em);
-
-    h3 {
-        text-align: start;
-        font-size: 1.75rem;
-        font-weight: 600;
-        margin-bottom: 0.5em;
-        
+        .card-container {
+            width: 100%;
+            justify-content: space-between;
+            @include flex-center(row);
+            gap: 2em;
+        }
     }
 
-    p {
-        margin-bottom: 1em;
-    }
-}
-
-.card_button {
-    align-self: center;
-    background-color: $button-color;
-    border-radius: 0.25rem;
-    color: $text-color;
-    font-size: 1rem;
-    padding: 0.5em 2.5em;
-    text-align: center;
-    
-    transition: all 0.3s ease-in-out;
-    border: none;
-
-    &:hover {
-        background-color: darken($button-color, 10%);
-        color: $text-color;
-    }
-
-    a {
-        text-decoration: none;
+    .card-section--card {
+        @include flex-center(column);
+        align-items: start;
+        justify-content: space-between;
+        background-color: $card-bg-color;
+        border-radius: 0.75rem;
         color: $secondary-color;
+        padding: 2em;
+        width: calc((100% / 3) - 3em);
+
+        h3 {
+            text-align: start;
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+        }
+
+        p {
+            margin-bottom: 1em;
+        }
+    }
+
+    .card_button {
+        align-self: center;
+        background-color: $button-color;
+        border-radius: 0.25rem;
+        color: $text-color;
+        font-size: 1rem;
+        padding: 0.5em 2.5em;
+        text-align: center;
+
+        transition: all 0.3s ease-in-out;
+        border: none;
+
+        &:hover {
+            background-color: darken($button-color, 10%);
+            color: $text-color;
+        }
+
+        a {
+            text-decoration: none;
+            color: $secondary-color;
+        }
     }
 }

@@ -1,72 +1,70 @@
 @use "../utils/variables" as *;
 @use "../utils/mixins" as *;
+@use "../utils/breakpoints";
 
-.gallery {
-    @include flex-center(row);
-    flex-wrap: wrap;
-    padding: 3.5em;
-}
+@include responsive-to(xl) {
+    .gallery {
+        @include flex-center(row);
+        flex-wrap: wrap;
+        padding: 3.5em;
+    }
 
-.gallery_list {
-    display: flex;
-    color: $secondary-color;
-    gap: 2em;
+    .gallery_list {
+        display: flex;
+        color: $secondary-color;
+        gap: 2em;
 
-    .main-gallery,
-    .gallery_list--card {
-        flex: 0 1 50%;
+        .main-gallery,
+        .gallery_list--card {
+            flex: 0 1 50%;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    .main-gallery {
         display: flex;
         flex-direction: column;
-    }
+        justify-content: space-between;
 
-    @media (max-width: 768px) {
-        flex-direction: column;
-        align-items: center;
-    }
-}
+        h2 {
+            font-family: $font-stack;
+            font-weight: 1000;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            line-height: 100%;
+        }
 
-.main-gallery {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    h2 {
-        font-family: $font-stack;
-        font-weight: 1000;
-        font-size: 4rem;
-        margin-bottom: 1rem;
-        line-height: 100%;
-    }
-
-    p {
-        font-size: 2rem;
-        font-weight: 100;
-        margin-bottom: 1rem;
-    }
-
-    img {
-        width: 100%;
-        object-fit: cover;
-        flex: 1;
-        border-radius: 1rem;
-    }
-}
-
-.gallery_list--cards {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 2rem;
-    flex: 1 1 50%;
-
-    .gallery-card {
-        overflow: hidden;
+        p {
+            font-size: 2rem;
+            font-weight: 100;
+            margin-bottom: 1rem;
+        }
 
         img {
             width: 100%;
-            height: 100%;
             object-fit: cover;
+            flex: 1;
             border-radius: 1rem;
+        }
+    }
+
+    .gallery_list--cards {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 2rem;
+        flex: 1 1 50%;
+
+        .gallery-card {
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 1rem;
+            }
         }
     }
 }
