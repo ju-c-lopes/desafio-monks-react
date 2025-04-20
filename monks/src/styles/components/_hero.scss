@@ -1,5 +1,5 @@
-@use '../utils/variables' as *;
-@use '../utils/mixins' as *;
+@use "../utils/variables" as *;
+@use "../utils/mixins" as *;
 
 .hero {
     @include flex-center(row);
@@ -12,7 +12,7 @@
     overflow: hidden;
 
     .hero_nav__box {
-        margin: 2em 0
+        margin: 2em 0;
     }
 }
 
@@ -50,12 +50,12 @@
         width: 10%;
         margin: 0;
     }
-    
-    @include responsive(md) {
+
+    @include responsive-to(md) {
         h1 {
             font-size: 2rem;
         }
-    
+
         p {
             font-size: 1rem;
         }
@@ -84,14 +84,14 @@
             }
         }
     }
-    
-    @include responsive(md) {
+
+    @include responsive-to(md) {
         flex-direction: column;
         align-items: flex-start;
         padding: 1rem;
     }
 
-    @include responsive(sm) {
+    @include responsive-to(sm) {
         flex-direction: column;
         align-items: flex-start;
         padding: 1rem;
@@ -102,7 +102,8 @@
     width: 100%;
 }
 
-.hero_image__right, .hero_image__right img {
+.hero_image__right,
+.hero_image__right img {
     width: 100%;
     overflow: clip;
     margin-right: -4em;

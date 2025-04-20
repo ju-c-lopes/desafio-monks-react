@@ -84,6 +84,22 @@ function registerCustomTaxonomyTags()
 
 add_action('init', 'registerCustomTaxonomyTags');
 
+function createCustomPostTypeFormularios()
+{
+    register_post_type('formularios', [
+        'labels' => [
+            'name' => __('Formulários'),
+            'singular_name' => __('Formulário'),
+        ],
+        'public' => true,
+        'has_archive' => false,
+        'show_in_rest' => true,
+        'rewrite' => ['slug' => 'formularios'],
+        'supports' => ['title', 'custom-fields']
+    ]);
+}
+add_action('init', 'createCustomPostTypeFormularios');
+
 /*
     |----------------------------------------------------------
     |  CORS HEADER – libera React em http://localhost:5173
@@ -117,3 +133,29 @@ add_filter('post_type_link', function ($post_link, $post) {
     }
     return $post_link;
 }, 10, 2);
+
+add_action('rest_api_init', function () {
+    register_rest_route('custom/v1', '/enviar-formulario', [
+        'methods' => 'POST',
+        'callback' => 'handleFormularioSubmission',
+        'permission_callback' => '__return_true',
+    ]);
+});
+
+function handleFormularioSubmission($request)
+{
+    $data = $request->get_json_params();
+
+    $post_id = wp_insert_post([
+        'post_type' => 'formularios',
+        'post_status' => 'publish',
+        'meta_input' => [
+            'categoria1' => sanitize_text_field($data['categoria1']),
+            'categoria2' => sanitize_text_field($data['categoria2']),
+            'categoria3' => sanitize_text_field($data['categoria3']),
+            'categoria4' => sanitize_text_field($data['categoria4']),
+        ],
+    ]);
+
+    return new WP_REST_Response(['id' => $post_id], 200);
+}

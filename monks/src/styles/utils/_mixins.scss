@@ -1,4 +1,4 @@
-@use '../utils/variables' as *;
+@use "../utils/variables" as *;
 
 @mixin flex-center($direction: row) {
     display: flex;
@@ -7,17 +7,21 @@
     flex-direction: $direction;
 }
 
-@mixin responsive($breakpoint) {
+@mixin responsive-to($breakpoint) {
     @if $breakpoint == sm {
-        @media (max-width: $breakpoint-sm) {
+        @media (max-width: $breakpoint) {
             @content;
         }
     } @else if $breakpoint == md {
-        @media (max-width: $breakpoint-md) {
+        @media (max-width: $breakpoint) {
             @content;
         }
     } @else if $breakpoint == lg {
-        @media (max-width: $breakpoint-lg) {
+        @media (min-width: $breakpoint) {
+            @content;
+        }
+    } @else if $breakpoint == xl {
+        @media (min-width: $breakpoint) {
             @content;
         }
     }
