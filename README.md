@@ -78,11 +78,11 @@ Foi criado um mixin chamado `responsive-to()` disponível no arquivo `breakpoint
 
 | Nome  | Largura máxima | Descrição         |
 |-------|----------------|-------------------|
-| sm    | 768px          | Smartphones       |
-| md    | 1024px         | Tablets           |
-| lg    | 1280px         | Laptops           |
-| xl    | 1440px         | Desktops padrão   |
-| xxl   | 1920px         | Telas muito amplas|
+| sm    | 480px          | Smartphones       |
+| md    | 768px          | Tablets           |
+| lg    | 1024px         | Laptops           |
+| xl    | 1280px         | Desktops padrão   |
+| xxl   | > 1280px       | Telas muito amplas|
 
 <hr />
 
@@ -112,6 +112,9 @@ cd monks
 
 # Rodar o comando
 npm install
+
+# Rodar a aplicação
+npm run dev -- --host
 ```
 
 ---
