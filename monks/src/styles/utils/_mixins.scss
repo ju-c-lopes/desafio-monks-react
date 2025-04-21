@@ -1,5 +1,5 @@
 @use "../utils/variables" as *;
-@use "../utils/breakpoints";
+@use "../utils/breakpoints" as *;
 
 @mixin flex-center($direction: row) {
     display: flex;
@@ -18,11 +18,15 @@
             @content;
         }
     } @else if $breakpoint == lg {
-        @media (min-width: $breakpoint) {
+        @media (max-width: $breakpoint) {
             @content;
         }
     } @else if $breakpoint == xl {
-        @media (min-width: $breakpoint) {
+        @media (max-width: $breakpoint) {
+            @content;
+        }
+    } @else if $breakpoint == xxl {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
             @content;
         }
     }

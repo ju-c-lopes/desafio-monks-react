@@ -1,5 +1,4 @@
 import Hero from "../components/Hero";
-import "../styles/base/_header.scss";
 
 const Header = () => {
     return (
